@@ -20,8 +20,9 @@ class CreateArticlesTable extends Migration
             $table->longText('body');
             $table->string('cover_image')->nullable();
             $table->mediumText('quote')->nullable();
-            $table->boolean('allow_comments')->default('false');
-            $table->boolean('approved')->default('false');
+            $table->boolean('allow_comments')->default(0);
+            $table->boolean('approved')->default(0);
+            $table->string('link');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
             ->references('id')

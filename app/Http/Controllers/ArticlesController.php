@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Traits\ImageUploaderTrait;
+use App\Http\Requests\StoreArticles;
+
 
 class ArticlesController extends Controller
 {
+    use ImageUploaderTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -32,12 +37,32 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreArticles  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticles $request)
     {
-        //
+        $validated = $request->validated();
+
+        //Image upload & store
+        $validatedImage = validateImage($request);
+        $article_url = str_replace(' ', '-', strtolower($request->input('title')));
+
+        $image_url = storeImage($request, 'public\images\blog\articles\covers', $article_url);
+
+        $article = new Article;
+        $article->title = $request->input('title');
+        $article->description = $request->input('description');
+        $article->link = $article_url;
+        $article->cover_image = $image_url;
+        $article->quote = $request->input('quote');
+        $article->allow_comments = $request->input('allow_comments');
+        $article->user_id = auth()->user()->id();
+        $article->save();
+
+        return redirect()
+                ->back()
+                ->with('Success', 'Article created. Awaiting to be approved');
     }
 
     /**
