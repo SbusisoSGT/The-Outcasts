@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile_pic',
     ];
 
     /**
@@ -35,5 +35,49 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+    ]; 
+
+    /**
+     * Get the articles this user has posted
+     */
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
+
+    /**
+     * Get the role of this user
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    /**
+     * Check if User has any of the roles supplied in array
+     *
+     * @param  array  $roles
+     * @return bool
+     */
+    public function hasAnyRoles($roles)
+    {
+        if($this->role()->whereIn('role', $roles)->first())
+            return true;
+          
+        return false;
+    }
+
+    /**
+     * Check if User has the roles supplied
+     *
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        if($this->role()->where('role', $role)->first())
+            return true;
+
+        return false;
+    }
 }

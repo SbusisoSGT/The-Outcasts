@@ -1,0 +1,89 @@
+/*		Mailing List Form UI		*/
+
+.subscribe-container{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 4rem;
+}
+
+.subscribe-header{
+	font-size: 1.9rem;
+	color: #303030;
+	align-self: center;
+}
+
+.subscribe-form-container{
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+	padding-top: .9rem;
+}
+
+.subscribe-form-container form{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: row;
+}
+
+.input-form{
+	padding-left: .9rem;
+	/*background: #F0F0F0;*/
+	border: 1px solid #D2D2D2;
+	width: 17.2rem;
+	height: 2.3rem;
+	margin-right: 0;
+}
+
+.input-form:hover{
+	border: 1px solid #9B29A5;
+}
+
+.submit-form{
+	background: #9B29A5;
+	color: #F0F0F0;
+	border: none;
+	width: 8.7rem;
+	height: 2.3rem;
+	font-weight: bold;
+	align-self: center;
+}
+
+.subscribe-success, .subscribe-awesome{
+	align-self: center;
+	margin-top: .7rem;
+	font-size: 1rem;
+	color: #808080;
+}
+
+.subscribe-awesome{
+	margin-top: .1rem;
+}
+
+
+@media only screen and (max-width: 576px){
+	.subscribe-form-container{
+	    flex-flow: row wrap;
+	    align-items: center;
+	   	padding-top: 1.1rem;
+	}
+
+	.subscribe-form-container form{
+		display: flex;
+		justify-content: center;
+		align-content: center;
+		flex-direction: column;
+	}
+
+
+	.submit-form{
+		width: 17.2rem;
+		margin-top: .4rem;
+		/*margin-top: .9rem;*/
+	}
+
+}
