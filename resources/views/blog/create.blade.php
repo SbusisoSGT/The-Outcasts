@@ -9,50 +9,70 @@
 @endsection
 
 @section('content')
-	<div class="create-container">
-		<h2>Create an Article Post</h2> 
-		<div class="create-form-container">
-			<form method="POST" action="/blog/articles/store">
-		        @csrf
-		        <div class="form-group">
-		        	<label for="title">Title</label>
-		        	<input type="text" name="title" class="form-control">
-		        </div>
-		        <div class="form-group">
-		        	<label for="description">Description</label>
-		        	<textarea name="description" class="form-control"></textarea>
-		        </div>
-		        <div class="form-group">
-			        <label for="quote">Quote</label>
-			        <textarea type="text" name="quote" class="form-control"></textarea>
-		        </div>
-		        <div class="form-group">
-		        	<label for="tags">Tags</label>
-			        <input type="text" name="tags" class="form-control" placeholder="e.g Beauty, Self-worth, Independence">
-			        <span id="tag-info">Seperate tags by comma</span>
-		        </div>
-		        <div class="form-group">
-		        	<label for="allow-comments">Allow Comments</label><br/>
-		        	<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="allow-comments" value="true" disabled>
-						<label class="form-check-label" for="allow-comments1">Yes</label>
+	<div class="content-container">
+		<div class="space-nje">
+			Eita dnxng
+		</div>
+		<div class="create-container">
+			<h2>Create an Article Post</h2> 
+			<div class="create-form-container">
+				@if ($errors->any())
+					<div class="alert alert-danger">
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
 					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="allow-comments" value="false" checked>
-					  <label class="form-check-label" for="allow-comments2">No</label>
+				@endif
+				@if (isset($success))
+					<span class="alert alert-success">{{$success}}</span>
+				@endif
+				{{-- @if ($message = Session::get('success'))
+					<div class="alert alert-success alert-block">
+						<button type="button" class="close" data-dismiss="alert">×</button>	
+							<strong>{{ $message }}</strong>
 					</div>
-				</div>
-		        <div class="form-group">
-				    <label for="cover-image">Cover Image</label>
-				    <input type="file" class="form-control-file">
-				</div>
-				<div class="form-group">
-		        	<label for="body">Body</label>
-		            <textarea class="ckeditor form-control" name="body"></textarea>
-		        </div>
-				<input type="submit" class="btn btn-danger btn-block" value="Submit">
-		    </form>
+					@endif --}}
+				<form method="POST" action="/blog/articles/store" enctype="multipart/form-data">
+					@csrf
+					<div class="form-group">
+						<label for="title">Title</label>
+						<input type="text" name="title" class="form-control" value="{{ old('title') }}">
+					</div>
+					<div class="form-group">
+						<label for="description">Description</label>
+						<textarea name="description" class="form-control" >{{ old('description') }}</textarea>
+					</div>
+					<div class="form-group">
+						<label for="quote">Quote</label>
+						<textarea type="text" name="quote" class="form-control">{{ old('quote') }}</textarea>
+					</div>
+					<div class="form-group">
+						<label for="tags">Tags</label>
+						<input type="text" name="tags" class="form-control" placeholder="e.g Beauty, Self-worth, Independence" value="{{ old('tags') }}">
+						<span id="tag-info">Seperate tags by comma</span>
+					</div>
+					<div class="form-group">
+						<label for="allow-comments">Allow Comments</label><br/>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="allow_comments" value="1" disabled>
+							<label class="form-check-label" for="allow-comments1">Yes</label>
+						</div>
+						<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="allow_comments" value="0" checked>
+						<label class="form-check-label" for="allow-comments2">No</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="cover-image">Cover Image</label>
+						<input type="file" class="form-control-file" name="image">
+					</div>
+					<div class="form-group">
+						<label for="body">Body</label>
+						<textarea class="ckeditor form-control" name="body">{{ old('body') }}</textarea>
+					</div>
+					<input type="submit" class="btn btn-primary btn-block" value="Submit">
+				</form>
+			</div>
 		</div>
 	</div>
-
 @endsection

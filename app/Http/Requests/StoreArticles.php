@@ -26,6 +26,10 @@ class StoreArticles extends FormRequest
         return [
             'title' => 'required|unique:articles|max:255',
             'body' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'tags' => 'required',
+            'quote' => 'required',
         ];
     }
 }

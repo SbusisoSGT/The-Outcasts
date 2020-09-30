@@ -43,18 +43,6 @@
         </div>
     </nav>
     <main class="main-container">
-        <div class="cover-container">
-            <div class="cover">
-                <span class="cover-text">
-                    <span class="text-1">Here's to the <span id="misfits">Misfits</span>!</span>
-                        <span class="text-2">Welcome to where</span>
-                        <span id="belong">You Belong</span>
-                </span>
-                <span class="blog-link">
-    
-                </span>
-            </div>
-        </div>
         @yield('content')
     </main>
     <footer class="footer">

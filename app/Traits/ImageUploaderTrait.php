@@ -3,7 +3,7 @@
 namespace App\Traits;
  
 use Illuminate\Http\Request;
- 
+use Illuminate\Support\Facades\Storage;
 trait ImageUploaderTrait {
 
     /**
@@ -12,15 +12,16 @@ trait ImageUploaderTrait {
      * @param Illuminate\Http\Request $request
      * @return Illuminate\Http\Response
      */
-    public function validateImage(Request $request){
+    public function validateImage(Request $request)
+    {
         if ($request->hasFile('image')) {
-                    if ($request->file('image')->isValid()) {
+            if ($request->file('image')->isValid()) {
                         
-                        return $request->validate([
-                            'image' => 'mimes:jpeg,png|max:3072',
-                        ]);
-                    }
-                }
+                return $request->validate([
+                    'image' => 'mimes:jpeg,png,jpg|max:3072',
+                ]);
+            }
+        }
     }
 
     /**
@@ -28,15 +29,12 @@ trait ImageUploaderTrait {
      * 
      * @param Illuminate\Http\Request $request
      * @param string $destination
-     * @param string $image_name
-     * @return string $url
+     * @return string $url 
      */
-    public function storeImage(Request $request, $image_name, $destination)
+    public function storeImage(Request $request, $storage_path)
     {
-        $extension = $request->image->extension();
-        $request->image->storeAs($destination, $image_name.".".$extension);
-        $url = $image_name.".".$extension;
+        $this->validateImage($request);
 
-        return $url;
+        return Storage::putFile($storage_path, $request->file('image'));
     }
 }

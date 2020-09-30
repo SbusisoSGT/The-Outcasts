@@ -45,8 +45,6 @@ class ArticlesController extends Controller
         $validated = $request->validated();
 
         //Image upload & store
-        $validatedImage = validateImage($request);
-        $article_url = str_replace(' ', '-', strtolower($request->input('title')));
 
         $image_url = storeImage($request, 'public\images\blog\articles\covers', $article_url);
 
@@ -57,12 +55,12 @@ class ArticlesController extends Controller
         $article->cover_image = $image_url;
         $article->quote = $request->input('quote');
         $article->allow_comments = $request->input('allow_comments');
-        $article->user_id = auth()->user()->id();
+        $article->user_id = auth()->user()->id;
         $article->save();
-
+            
         return redirect()
                 ->back()
-                ->with('Success', 'Article created. Awaiting to be approved');
+                ->with('success', 'Article created. Awaiting to be approved');
     }
 
     /**
@@ -73,12 +71,11 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        // $article = Article::find($id);
+        $article = Article::find($id);
 
-        // if(empty($article))
-        //     return view('blog.index');
-        
-        return view('blog.show');
+        if(empty($article))
+            return view('blog.index');
+
         return view('blog.show')->with('article', $article); 
     }
 

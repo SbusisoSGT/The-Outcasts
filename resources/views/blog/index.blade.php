@@ -77,7 +77,7 @@
 						<img src={{asset("images/users/profile/sibongile.jfif")}}>
 						<div class="article-details">
 							<span class="article-author">
-								<a href={{url("/authors/")}}>Jane Doe</a>
+								<a href={{url("/authors")}}>Jane Doe</a>
 							</span>
 							<span class="article-createdat">
 								14 September, 2020 16h05

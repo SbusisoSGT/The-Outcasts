@@ -26,22 +26,29 @@
        	</a>
        	<a href="https://instagram.com/theoutcasts">
         	<i class="fas fa-envelope article-share"></i>
-        </a>
+		</a>
+		<a href="https://pinterst.com/theoutcasts">
+			<i class="fas fa-print article-share"></i>
+		</a>
 	</div>
 	<div class="article-container">
 		<div class="article-body">
 			<span class="article-title">
-				Standard Beauty
+				{{$article->title}}
 			</span>
 			<div class="article-attributes">
 				<div class="article-aside-1">
-					<img src={{asset("images/users/profile/blank-profile.png")}}>
+					<img src={{asset("images/users/profile/".$article->user->profile_pic)}}>
 					<div class="article-details">
 						<span class="article-author">
-							<a href={{url("/authors/")}}>Jane Doe</a>
+							<a href={{url("/authors/")}}>{{ $article->user->name }}</a>
 						</span><br/>
 						<span class="article-createdat">
-							14 September, 2020 16h05
+							@if ($article->updated_at == $article->created_at)
+								{{$article->created_at->format('d M Y, H\hi') }}
+							@else
+								Updated at {{$article->updated_at->format('d M Y, H\hi') }}
+							@endif
 						</span>
 					</div>
 				</div>
@@ -58,53 +65,15 @@
 				</div>
 			</div>
 			<div class="article-cover">
-				<img src={{asset("images/blog/articles/covers/balloon_view.jpg")}}>
+				<img src={{ url('storage/app/'.$article->cover_image)}}>
 			</div>
 			<div class="article-text">
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br/>
-				Quos, doloremque incidunt natus quis odit nisi. <br/>
-				Hic aut nihil sapiente quod id repudiandae repellendus <br/>
-				Dolorum fuga earum doloribus iure nobis. <br/>
-				Adipisci ea delectus laboriosam quasi aspernatur, <br/>
-				dolor cum sequi debitis maiores rem illo dicta dolores? <br/>
-				Quaerat perspiciatis tempore suscipit distinctio sunt nemo, <br/>
-				asperiores maxime iusto perspiciatis.<br/> 
-				Repellendus molestiae sunt sapiente laborum! <br/><br/>
-
-				Iusto ratione illo saepe soluta reiciendis sint quae<br/> 
-				Exercitationem, dolor corrupti repellat commodi eveniet impedit, <br/>
-				accusantium, quo aliquam ab corporis!<br/>
-				Quae enim doloremque recusandae cumque at saepe delectus error. <br/>
-				Tuis ipsum mollitia aliquid quisquam labore incidunt harum fugiat minus <br/>
-				architecto cupiditate. <br/>
-				Beatae quas quod repudiandae fugiat ullam iusto quo corrupti!<br/>
-				Ducimus consectetur quia illo aliquam non voluptates delectus perspiciatis, <br/>
-				ipsam eveniet corrupti vel corporis doloremque, fugiat sit suscipit ipsum odio<br/> 
-				Vitae enim magni voluptas quibusdam eos dolor laboriosam. <br/>
-				Deleniti, laudantium. <br/>
-				Iste quidem eligendi illo accusantium incidunt, beatae, sint. <br/><br/>
-				
-				Dolorem quam quisquam mollitia non rerum. <br/>
-				Dignissimos, commodi consectetur fugit aliquid et numquam! <br/>
-				Unde libero ea voluptatum natus cupiditate odit sapiente hic quasi?<br/>
-				Placeat ab culpa repudiandae ducimus consequatur dicta? <br/>
-				Aperiam, error et! Asperiores quo laudantium reiciendis praesentium maxime ab, <br/>
-				placeat corporis ad laboriosam, facere quidem atque! <br/>
-				Reiciendis perspiciatis, porro saepe provident. <br/>
-				Rem sit culpa ipsum est, tempore nemo ea. <br/>
-				Est voluptatibus accusantium error adipisci, enim expedita sapiente. <br/>
-				<a href="">Nesciunt</a> alias obcaecati nostrum mollitia harum, <br/>
-				porro eligendi vitae incidunt numquam aliquid reiciendis. <br/>
-				maxime necessitatibus veritatis corrupti id modi deserunt ut tempora <br/>
-				Quaerat, amet dolorum? Repellendus vero nesciunt nemo, <br/>
-				accusamus, ab quo labore placeat aut impedit sit. <br/>
-				Provident eum ipsa delectus quod dignissimos vel repellat. <br/>
-				Saepe, similique omnis fugiat ratione non assumenda!<br/>
+				{!! $article->body !!}
 			</div>
 		</div>
 		<div class="article-quote-container">
 			<span class="article-quote">
-				Nesciunt alias obcaecati nostrum mollitia harum maxime necessitatibus veritatis corrupti id
+				{{$article->quote}}
 			</span>
 		</div>
 		<div class="article-share-mobile">
@@ -118,6 +87,9 @@
 				</a>
 				<a href="https://pinterst.com/theoutcasts">
 					<i class="fas fa-envelope share-mobile"></i>
+				</a>
+				<a href="https://pinterst.com/theoutcasts">
+					<i class="fas fa-print share-mobile"></i>
 				</a>
 			</div>
 		</div>
