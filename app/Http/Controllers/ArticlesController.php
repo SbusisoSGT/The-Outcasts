@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\ImageUploaderTrait;
 use App\Http\Requests\StoreArticles;
+use App\Article;
 
 
 class ArticlesController extends Controller
