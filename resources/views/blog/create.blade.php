@@ -10,16 +10,13 @@
 
 @section('content')
 	<div class="content-container">
-		<div class="space-nje">
-			Eita dnxng
-		</div>
 		<div class="create-container">
 			<h2>Create an Article Post</h2> 
 			<div class="create-form-container">
 				@if ($errors->any())
 					<div class="alert alert-danger">
 							@foreach ($errors->all() as $error)
-								<li>{{ $error }}</li>
+								<span>{{ $error }}</span>
 							@endforeach
 					</div>
 				@endif
@@ -76,3 +73,4 @@
 		</div>
 	</div>
 @endsection
+

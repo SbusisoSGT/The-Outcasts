@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\TagController;
 use App\Traits\ImageUploaderTrait;
+use App\Traits\StoreTagsTrait;
 use App\Http\Requests\StoreArticles;
 use App\Article;
 
@@ -11,6 +14,13 @@ use App\Article;
 class ArticlesController extends Controller
 {
     use ImageUploaderTrait;
+    use StoreTagsTrait;
+    // protected $tagController;
+
+    // public function _constructor(TagController $tagController)
+    // {
+    //     $this->tagController = new $tagController;
+    // }
 
     /**
      * Display a listing of the resource.
@@ -46,19 +56,20 @@ class ArticlesController extends Controller
         $validated = $request->validated();
 
         //Image upload & store
-
-        $image_url = storeImage($request, 'public\images\blog\articles\covers', $article_url);
+        $image_url = $this->storeImage($request, 'public/covers');
 
         $article = new Article;
         $article->title = $request->input('title');
         $article->description = $request->input('description');
-        $article->link = $article_url;
+        $article->body = $request->input('body');
         $article->cover_image = $image_url;
         $article->quote = $request->input('quote');
         $article->allow_comments = $request->input('allow_comments');
         $article->user_id = auth()->user()->id;
         $article->save();
-            
+        
+        $this->storeTags($request->input('tags'), $article->id);
+
         return redirect()
                 ->back()
                 ->with('success', 'Article created. Awaiting to be approved');
@@ -73,11 +84,16 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
+        $tags = DB::table('tags')
+                    ->join('article_tags', 'tags.id', '=', 'article_tags.tag_id')
+                    ->where('article_tags.article_id', $id)
+                    ->select('tags.tag')
+                    ->get();
 
         if(empty($article))
             return view('blog.index');
 
-        return view('blog.show')->with('article', $article); 
+        return view('blog.show')->with(['article' => $article, 'tags' => $tags]); 
     }
 
     /**

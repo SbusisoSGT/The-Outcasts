@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('page-name', config('app.name', 'The Outcasts'))
+@section('page-name', $article->title." | ".config('app.name', 'The Outcasts'))
 
 @section('page-includes')
 	<link rel="stylesheet" href={{asset("css/blog/show.css") }}>
@@ -11,9 +11,9 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="Your Website Title" />
-	<meta property="og:description"   content="Your description" />
-	<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+	<meta property="og:title"         content={{$article->title}} />
+	<meta property="og:description"   content={{$article->description}} />
+	<meta property="og:image"         content={{ asset('storage/covers/'.$article->cover_image)}} />
 @endsection
 
 @section('content')
@@ -41,7 +41,7 @@
 					<img src={{asset("images/users/profile/".$article->user->profile_pic)}}>
 					<div class="article-details">
 						<span class="article-author">
-							<a href={{url("/authors/")}}>{{ $article->user->name }}</a>
+							<a href={{url("/authors/".$article->user->name)}}>{{ $article->user->name }}</a>
 						</span><br/>
 						<span class="article-createdat">
 							@if ($article->updated_at == $article->created_at)
@@ -53,19 +53,17 @@
 					</div>
 				</div>
 				<div class="article-tags">
-					<a href="/blog/tags/"><span class="article-tag">
-						Self-worth
-					</span></a>
-					<a href=""><span class="article-tag">
-						Beauty
-					</span></a>
-					<a href="/blog/tags"><span class="article-tag">
-						Confident
-					</span></a>
+					@foreach ($tags as $tag)
+						<a href={{"/blog/tags/".$tag->tag}}>
+							<span class="article-tag">
+								{{$tag->tag}}
+							</span>
+						</a>
+					@endforeach
 				</div>
 			</div>
 			<div class="article-cover">
-				<img src={{ url('storage/app/'.$article->cover_image)}}>
+				<img src={{ asset('storage/covers/'.$article->cover_image)}}>
 			</div>
 			<div class="article-text">
 				{!! $article->body !!}

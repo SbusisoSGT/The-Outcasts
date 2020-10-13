@@ -35,6 +35,9 @@ trait ImageUploaderTrait {
     {
         $this->validateImage($request);
 
-        return Storage::putFile($storage_path, $request->file('image'));
+        $unique_filename = md5(time()).'.'.$request->file('image')->extension();
+        Storage::putFileAs($storage_path, $request->file('image'), $unique_filename);
+
+        return $unique_filename;
     }
 }
