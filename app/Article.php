@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Article extends Model
 {
@@ -38,5 +39,16 @@ class Article extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function article_tags()
+    {
+        $tags = DB::table('tags')
+                    ->join('article_tags', 'tags.id', '=', 'article_tags.tag_id')
+                    ->where('article_tags.article_id', $this->id)
+                    ->select('tags.tag')
+                    ->get();
+
+        return $tags;
     }
 }

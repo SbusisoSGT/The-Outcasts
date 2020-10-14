@@ -29,9 +29,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        // $articles = Article::where('approved', 'true')->get();
-
-        return view('blog.index');
+        $articles = Article::where('approved', 'true')->get();
+        
         return view('blog.index')->with('articles', $articles); 
     }
 
@@ -84,16 +83,11 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        $tags = DB::table('tags')
-                    ->join('article_tags', 'tags.id', '=', 'article_tags.tag_id')
-                    ->where('article_tags.article_id', $id)
-                    ->select('tags.tag')
-                    ->get();
 
         if(empty($article))
             return view('blog.index');
 
-        return view('blog.show')->with(['article' => $article, 'tags' => $tags]); 
+        return view('blog.show')->with('article', $article); 
     }
 
     /**

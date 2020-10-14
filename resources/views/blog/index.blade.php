@@ -23,141 +23,94 @@
 	<div class="content-container">
 		<div class="latest-article-container">
 			<div class="latest-article-title">
-				Necessitatibus veritatis corrupti id modi 
+				{{$articles->first()->title}} 
 			</div>
 			<div class="latest-article-cover">
-				<img src={{asset("images/blog/articles/covers/rainbow_16_4k_5k_hd_nature-1366x768.jpg")}}>
+				<img src={{asset('storage/covers/'.$articles->first()->cover_image)}}>
 			</div>
 			<div class="latest-article-attributes">
 				<div class="article-aside-1">
 					<div class="latest-article-details">
 						<span class="latest-article-description">
-							Dignissimos, commodi consectetur fugit aliquid et numquam. Unde libero ea voluptatum natus cupiditate odit sapiente hic quasi? Beatae quas quod repudiandae fugiat ullam iusto quo corrupti.
+							{{$articles->first()->description}}
 						</span>
 						<div class="article-author-details">
-							<img src={{asset("images/users/profile/sbusiso2.0.jpeg")}}>
+							<img src={{asset("images/users/profile/".$articles->first()->user->profile_pic)}}>
 							<div class="article-details">
 								<span class="article-author">
-									<a href={{url("/authors/")}}>James Gbenro</a>
+									<a href={{url("/authors/".$articles->first()->user->name)}}>
+										{{ $articles->first()->user->name }}
+									</a>
 								</span>
 								<span class="article-createdat">
-									10 July, 2020 11h55
+									@if ($articles->first()->updated_at == $articles->first()->created_at)
+										{{$articles->first()->created_at->format('d M Y, H\hi') }}
+									@else
+										Updated at {{$articles->first()->updated_at->format('d M Y, H\hi') }}
+									@endif
 								</span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="article-tags">
-					<a href="/blog/tags/"><span class="article-tag">
-						Self-worth
-					</span></a>
-					<a href=""><span class="article-tag">
-						Beauty
-					</span></a>
-					<a href="/blog/tags"><span class="article-tag">
-						Confident
-					</span></a>
+					@if(!empty($articles->first()->article_tags()))
+						@foreach ($articles->first()->article_tags() as $tag)
+							<a href={{"/blog/tags/".$tag->tag}}>
+								<span class="article-tag">
+									{{$tag->tag}}
+								</span>
+							</a>
+						@endforeach
+					@endif
 				</div>
 			</div>
 		</div>
 		
 		<div class="articles-container">
-			<div class="article-container">
-				<div class="article-cover">
-					<img src={{asset("images/blog/articles/covers/moon_tree-starry_sky.jpg")}}>
-				</div>
-				<div class="article-attributes">
-					<div class="article-title">
-						Est voluptatibus accusantium
+			@for($x = 1; $x < count($articles); $x++)
+				<div class="article-container">
+					<div class="article-cover">
+						<img src={{asset('storage/covers/'.$articles[$x]->cover_image)}}>
 					</div>
-					<div class="article-description">
-						Quaerat, amet dolorum? Repellendus vero  psa delectus quod dignissimosnesciunt nemo, accusamus, ab quo labore placeat aut impedit sit.
-					</div>
-					<div class="article-author-details">
-						<img src={{asset("images/users/profile/sibongile.jfif")}}>
-						<div class="article-details">
-							<span class="article-author">
-								<a href={{url("/authors")}}>Jane Doe</a>
-							</span>
-							<span class="article-createdat">
-								14 September, 2020 16h05
-							</span>
+					<div class="article-attributes">
+						<div class="article-title">
+							{{$articles[$x]->title}}
+						</div>
+						<div class="article-description">
+							{{$articles[$x]->description}}
+						</div>
+						<div class="article-author-details">
+							<img src={{asset("images/users/profile/".$articles[$x]->user->profile_pic)}}>
+							<div class="article-details">
+								<span class="article-author">
+									<a href={{url("/authors/".$articles[$x]->user->name)}}>
+										{{$articles[$x]->user->name }}
+									</a>
+								</span>
+								<span class="article-createdat">
+									@if ($articles[$x]->updated_at == $articles[$x]->created_at)
+										{{$articles[$x]->created_at->format('d M Y, H\hi') }}
+									@else
+										Updated at {{$articles[$x]->updated_at->format('d M Y, H\hi') }}
+									@endif
+								</span>
+							</div>
+						</div>
+						<div class="article-tags">
+							@if(!empty($articles[$x]->article_tags()))
+								@foreach ($articles[$x]->article_tags() as $tag)
+									<a href={{"/blog/tags/".$tag->tag}}>
+										<span class="article-tag">
+											{{$tag->tag}}
+										</span>
+									</a>
+								@endforeach
+							@endif
 						</div>
 					</div>
-					<div class="article-tags">
-						<a href="/blog/tags/"><span class="article-tag">
-							Self-worth
-						</span></a>
-						<a href=""><span class="article-tag">
-							Beauty
-						</span></a>
-					</div>
 				</div>
-			</div>
-			<div class="article-container">
-				<div class="article-cover">
-					<img src={{asset("images/blog/articles/covers/balloon_view.jpg")}}>
-				</div>
-				<div class="article-attributes">
-					<div class="article-title">
-						Placeat ab culpa repudiandae ducimus consequatur dicta?
-					</div>
-					<div class="article-description">
-						Nesciunt alias obcaecati nostrum mollitia harum, porro eligendi vitae incidunt numquam aliquid reiciendis.
-					</div>
-					<div class="article-author-details">
-						<img src={{asset("images/users/profile/sbusiso.jpeg")}}>
-						<div class="article-details">
-							<span class="article-author">
-								<a href={{url("/authors/")}}>Jane Doe</a>
-							</span>
-							<span class="article-createdat">
-								14 Sept, 2020 16h05 | 3min read
-							</span>
-						</div>
-					</div>
-					<div class="article-tags">
-						<a href="/blog/tags/"><span class="article-tag">
-							Self-worth
-						</span></a>	
-					</div>
-				</div>
-			</div>
-			<div class="article-container">
-				<div class="article-cover">
-					<img src={{asset("images/blog/articles/covers/abstract_star_4k_hd-1366x768.jpg")}}>
-				</div>
-				<div class="article-attributes">
-					<div class="article-title">
-						Repellendus molestiae sunt sapiente laborum!
-					</div>
-					<div class="article-description">
-						Life will always be fun I guess, I'm just writing gibberish only ... 
-					</div>
-					<div class="article-author-details">
-						<img src={{asset("images/users/profile/blank-profile.png")}}>
-						<div class="article-details">
-							<span class="article-author">
-								<a href={{url("/authors/")}}>John Doe</a>
-							</span>
-							<span class="article-createdat">
-								07 January, 2020 17h05
-							</span>
-						</div>
-					</div>
-					<div class="article-tags">
-						<a href="/blog/tags/"><span class="article-tag">
-							Amazing
-						</span></a>
-						<a href=""><span class="article-tag">
-							Self-esteem
-						</span></a>
-						<a href="/blog/tags"><span class="article-tag">
-							Confident
-						</span></a>
-					</div>
-				</div>
-			</div>
+			@endfor
 		</div> 
 		@include('inc._subscribe')
 	</div>

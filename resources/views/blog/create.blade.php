@@ -10,9 +10,11 @@
 
 @section('content')
 	<div class="content-container">
-		<div class="create-container">
-			<h2>Create an Article Post</h2> 
-			<div class="create-form-container">
+		<div class="card">
+  			<div class="card-header">
+				<h3>Create an Article Post</h3>
+			</div>
+			<div class="card-body">
 				@if ($errors->any())
 					<div class="alert alert-danger">
 							@foreach ($errors->all() as $error)

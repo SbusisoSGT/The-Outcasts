@@ -41,7 +41,9 @@
 					<img src={{asset("images/users/profile/".$article->user->profile_pic)}}>
 					<div class="article-details">
 						<span class="article-author">
-							<a href={{url("/authors/".$article->user->name)}}>{{ $article->user->name }}</a>
+							<a href={{url("/authors/".$article->user->name)}}>
+								{{ $article->user->name }}
+							</a>
 						</span><br/>
 						<span class="article-createdat">
 							@if ($article->updated_at == $article->created_at)
@@ -53,13 +55,15 @@
 					</div>
 				</div>
 				<div class="article-tags">
-					@foreach ($tags as $tag)
-						<a href={{"/blog/tags/".$tag->tag}}>
-							<span class="article-tag">
-								{{$tag->tag}}
-							</span>
-						</a>
-					@endforeach
+					@if(!empty($article->article_tags()))
+						@foreach ($article->article_tags() as $tag)
+							<a href={{"/blog/tags/".$tag->tag}}>
+								<span class="article-tag">
+									{{$tag->tag}}
+								</span>
+							</a>
+						@endforeach
+					@endif
 				</div>
 			</div>
 			<div class="article-cover">

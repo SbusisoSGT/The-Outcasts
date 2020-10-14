@@ -13,7 +13,8 @@ class CreateArticleTagsTable extends Migration
      */
     public function up()
     {
-        Schema::table('article_tags', function (Blueprint $table) {
+        Schema::create('article_tags', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('article_id')->unsigned();
             $table->foreign('article_id')
                     ->references('id')
@@ -25,8 +26,6 @@ class CreateArticleTagsTable extends Migration
                     ->references('id')
                     ->on('tags')
                     ->onDelete('cascade');
-
-            $table->unique(['article_id','tag_id']);
         });
     }
 
@@ -37,8 +36,6 @@ class CreateArticleTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('article_id');
-        Schema::dropColumn('tag_id');
-        // Schema::dropIfExists('article_tags');
+        Schema::dropIfExists('article_tags');
     }
 }
