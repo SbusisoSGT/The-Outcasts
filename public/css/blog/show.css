@@ -155,8 +155,7 @@
 
 .article-cover img{
 	height: auto;
-	width: 100%;
-	border: 1px solid #C8C8C8;	
+	width: 100%;	
 }
 
 .article-text{
@@ -212,7 +211,7 @@
 
 	.article-attributes{
 		flex-direction: column;
-		margin: 1rem 0 0 1.5rem;
+		margin-top: 1rem;
 		justify-content: flex-start;
 	}
 
@@ -256,7 +255,6 @@
 
 	.article-attributes{
 		flex-direction: column;
-		margin: 1rem 0 0 1.5rem;
 		justify-content: flex-start;
 	}
 

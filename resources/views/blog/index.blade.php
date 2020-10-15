@@ -22,9 +22,9 @@
 @section('content')
 	<div class="content-container">
 		<div class="latest-article-container">
-			<div class="latest-article-title">
+			<a class="article-link" href={{$articles->first()->id}}><div class="latest-article-title">
 				{{$articles->first()->title}} 
-			</div>
+			</div></a>
 			<div class="latest-article-cover">
 				<img src={{asset('storage/covers/'.$articles->first()->cover_image)}}>
 			</div>

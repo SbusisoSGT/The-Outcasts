@@ -8,6 +8,7 @@
 .latest-article-container{
 	width: 80%;
 	/*padding: 3rem 10rem;*/
+	border: 1px solid #C8C8C8;
 }
 
 .latest-article-title{
@@ -20,9 +21,7 @@
 }
 
 .latest-article-cover{
-	width: 65%;
-	margin: 0 auto;
-	align-self: center;	
+	width: 85%;	
 	margin-top: 0.5rem;
 }
 
@@ -50,6 +49,9 @@
 	border-radius: 50rem;
 }
 
+.latest-article-description{
+	font-size: 1.1rem;
+}
 .article-tags{
 	display: flex;
 	flex-direction: row;
@@ -67,7 +69,7 @@
 	padding: 0 .4rem;
 	border-radius: 50rem;
 	color: #9B29A5;
-	font-size: .8rem;
+	font-size: 1rem;
 	border: 1px solid #9B29A5;
 	cursor: pointer;
 }
@@ -76,6 +78,10 @@
 	background: #9B29A5;
 	color: #FFF;
 	transition: ease .5s;
+}
+
+.latest-article-title:hover{
+	color: #9B29A5;
 }
 
 .articles-container{
@@ -142,12 +148,12 @@
 }
 
 .article-author{
-	font-size: 1.2rem;
 	font-weight: 500;
 }
 
 .article-author a{
 	color: #9B29A5 !important;
+	font-size: 1.3rem;
 }
 
 .article-createdat{
@@ -206,7 +212,10 @@
 		font-size: 1.0rem;
 	}
 
-	.article-author{
-		font-size: 1.0rem;
+	.article-author a{
+		font-size: 1.2rem;
+	}
+	.article-tag{
+		font-size: .9rem;
 	}
 }
