@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('page-name', $article->title." | ".config('app.name', 'The Outcasts'))
+@section('page-name', $article->title." • ".config('app.name', 'The Outcasts'))
 
 @section('page-includes')
 	<link rel="stylesheet" href={{asset("css/blog/show.css") }}>
@@ -8,27 +8,34 @@
 
 @section('fb-share-config')
 	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="The Outcasts Blog" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
-	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content={{$article->title}} />
-	<meta property="og:description"   content={{$article->description}} />
-	<meta property="og:image"         content={{ asset('storage/covers/'.$article->cover_image)}} />
+	<meta property="og:url" content="{{url()->full()}}" />
+	<meta property="og:title" content="{{$article->title}}" />
+	<meta property="og:description" content="{{$article->description}}" />
+	<meta property="og:image" content="{{asset('storage/covers/'.$article->cover_image)}}" />
+	<meta property="article:published_time" content="{{$article->created_at}}" />
+	<meta property="article:modified_time" content="{{$article->updated_at}}" />
+@endsection
+
+@section('twt-share-config')
+
+
 @endsection
 
 @section('content')
 	<div class="article-share-side">
-		<a href="https://facebook.com/theoutcasts">
-			<i id="facebook-share" class="fa fa-facebook article-share"></i>
+		<a href="https://www.facebook.com/sharer/sharer.php?u={{url()->full()}}" target="_blank">
+					<i data-href="{{url()->full()}}" id="facebook-share" class="fa fa-facebook article-share"></i>
 		</a>
        	<a href="https://twitter.com/theoutcasts">
        		<i id="twitter-share" class="fab fa-twitter article-share"></i>
        	</a>
-       	<a href="https://instagram.com/theoutcasts">
+       <a href="mailto:?subject={{$article->title}}&body=Hey there%2C I was reading this article and I thought you would appreciate it%0A%0A{{url()->full()}}">
         	<i class="fas fa-envelope article-share"></i>
 		</a>
-		<a href="https://pinterst.com/theoutcasts">
-			<i class="fas fa-print article-share"></i>
+		<a>
+			<i class="fas fa-print article-share" onclick="window.print()"></i>
 		</a>
 	</div>
 	<div class="article-container">
@@ -57,7 +64,7 @@
 				<div class="article-tags">
 					@if(!empty($article->article_tags()))
 						@foreach ($article->article_tags() as $tag)
-							<a href={{"/blog/tags/".$tag->tag}}>
+							<a href={{"/blog/tags/".$tag->link}}>
 								<span class="article-tag">
 									{{$tag->tag}}
 								</span>
@@ -81,17 +88,17 @@
 		<div class="article-share-mobile">
 			<h2>Sharing is caring</h2>
 			<div class="share-icons-container">
-				<a href="https://facebook.com/theoutcasts">
-					<i id="facebook-share" class="fa fa-facebook share-mobile"></i>
+				<a href="https://www.facebook.com/sharer/sharer.php?u={{url()->full()}}" target="_blank">
+					<i data-href="{{url()->full()}}" id="facebook-share" class="fa fa-facebook share-mobile"></i>
 				</a>
 				<a href="https://twitter.com/theoutcasts">
 					<i class="fab fa-twitter share-mobile"></i>
 				</a>
-				<a href="https://pinterst.com/theoutcasts">
+				<a href="mailto:?subject={{$article->title}}&body=Hey there%2C I was reading this article and I thought you would appreciate it%0A%0A{{url()->full()}}">
 					<i class="fas fa-envelope share-mobile"></i>
 				</a>
-				<a href="https://pinterst.com/theoutcasts">
-					<i class="fas fa-print share-mobile"></i>
+				<a>
+					<i class="fas fa-print share-mobile" onclick="window.print()"></i>
 				</a>
 			</div>
 		</div>

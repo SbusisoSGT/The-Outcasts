@@ -14,7 +14,7 @@ class Article extends Model
      */
     protected $fillable = [
         'title', 'description', 'body', 'cover_image', 'allow_comments',
-        'approved', 'user_id', 'quote'
+        'approved', 'user_id', 'quote', 'link',
     ];
     
     /** 
@@ -46,7 +46,7 @@ class Article extends Model
         $tags = DB::table('tags')
                     ->join('article_tags', 'tags.id', '=', 'article_tags.tag_id')
                     ->where('article_tags.article_id', $this->id)
-                    ->select('tags.tag')
+                    ->select('tags.*')
                     ->get();
 
         return $tags;

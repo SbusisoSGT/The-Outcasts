@@ -1,16 +1,18 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+use App\Tag;
 
-class DatabaseSeeder extends Seeder
+class TagsTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(RolesTableSeeder::class);
+        //
     }
 }

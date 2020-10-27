@@ -29,7 +29,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('approved', 'true')->get();
+        $articles = Article::where('approved', 1)->get();
+
         
         return view('blog.index')->with('articles', $articles); 
     }
@@ -80,13 +81,13 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($article)
     {
-        $article = Article::find($id);
+        $article = Article::where('link', $article)->first();
 
         if(empty($article))
             return view('blog.index');
-
+        
         return view('blog.show')->with('article', $article); 
     }
 

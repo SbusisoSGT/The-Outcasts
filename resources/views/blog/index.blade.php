@@ -22,7 +22,7 @@
 @section('content')
 	<div class="content-container">
 		<div class="latest-article-container">
-			<a class="article-link" href={{$articles->first()->id}}><div class="latest-article-title">
+			<a class="article-link" href={{$articles->first()->link}}><div class="latest-article-title">
 				{{$articles->first()->title}} 
 			</div></a>
 			<div class="latest-article-cover">
@@ -100,7 +100,7 @@
 						<div class="article-tags">
 							@if(!empty($articles[$x]->article_tags()))
 								@foreach ($articles[$x]->article_tags() as $tag)
-									<a href={{"/blog/tags/".$tag->tag}}>
+									<a href={{"/blog/tags/".$tag->link}}>
 										<span class="article-tag">
 											{{$tag->tag}}
 										</span>

@@ -33,8 +33,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Blog Routes
 Route::get('/blog/articles', 'ArticlesController@index')->name('blog/articles');
 
-Route::get('/blog/articles/{id}/', 'ArticlesController@show')
-         ->name('/blog/articles/{id}');
+Route::get('/blog/articles/{article}/', 'ArticlesController@show')
+         ->name('/blog/articles/{article}');
 
 Route::get('/blog/articles/create', 'ArticlesController@create')
         ->name('blog/articles/create/')
@@ -55,5 +55,8 @@ Route::put('/blog/articles/{article}', 'ArticlesController@update')
 Route::delete('/blog/articles/{article}', 'ArticlesController@delete')
         ->name('blog/articles/delete')
         ->middleware('can:update-article');
+
+
+Route::get('/blog/tags/{tag}', 'TagController@show');
 
 // Route::post('/mailing-list/store', [MailingListController::class, 'store'])->name('/mailing-list/store');

@@ -7,6 +7,21 @@ use App\Tag;
 
 class TagController extends Controller
 {
+    /**
+    * Return articles of the specified tag
+    *
+    * @param string $tag
+    * @return Illuminate\Http\Response
+    */
+    public function show($tag)
+    {
+       $tag = Tag::where('link', $tag)->first();
+       $articles = $tag->tag_articles();
+
+       return view('blog.tags')
+              ->with(['articles' => $articles, 'tag' => $tag]);
+    }
+
     public function storeTags($tags, $article_id)
     {
         $tagsArr = explode(" ", str_replace(',', '', $tags));

@@ -17,7 +17,7 @@ class Tag extends Model
      *
      * @var array
      */
-    protected $fillable = ['tag'];
+    protected $fillable = ['tag', 'link' ];
 
     /**
      * Get the articles that have this tag
