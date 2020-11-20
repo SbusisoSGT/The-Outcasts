@@ -7,8 +7,11 @@
 @endsection
 
 @section('fb-share-config')
+	<!-- Facebook Open Graph Tags -->
 	<meta property="og:locale" content="en_US" />
+	<meta property="fb:app_id" content="" />
 	<meta property="og:site_name" content="The Outcasts Blog" />
+	<meta property="article:author" content="https://www.facebook.com/theoutcastsblog" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="{{url()->full()}}" />
 	<meta property="og:title" content="{{$article->title}}" />
@@ -19,8 +22,12 @@
 @endsection
 
 @section('twt-share-config')
-
-
+	<!-- Twitter Cards -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@thebalance" />
+	<meta name="twitter:title" content="{{$article->title}}" />
+	<meta name="twitter:description" content="$article->description}}" />
+	<meta name="twitter:image" content="{{asset('storage/covers/'.$article->cover_image)}}">
 @endsection
 
 @section('content')
