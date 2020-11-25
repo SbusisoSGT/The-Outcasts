@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\TagController;
 use App\Traits\ImageUploaderTrait;
@@ -42,6 +43,8 @@ class ArticlesController extends Controller
      */
     public function create()
     {
+
+        // if(auth()->user()->guest() && auth()->user()->hasAnyRoles(["Admin", "Author"]))
         return view('blog.create');
     }
 
@@ -51,24 +54,25 @@ class ArticlesController extends Controller
      * @param  App\Http\Requests\StoreArticles  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArticles $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
+        // $validated = $request->validated();
 
-        //Image upload & store
-        $image_url = $this->storeImage($request, 'public/covers');
+        // //Image upload & store
+        // $image_url = $this->storeImage($request, 'public/covers');
 
-        $article = new Article;
-        $article->title = $request->input('title');
-        $article->description = $request->input('description');
-        $article->body = $request->input('body');
-        $article->cover_image = $image_url;
-        $article->quote = $request->input('quote');
-        $article->allow_comments = $request->input('allow_comments');
-        $article->user_id = auth()->user()->id;
-        $article->save();
+        // $article = new Article;
+        // $article->title = Str::title($request->input('title'));
+        // $article->description = $request->input('description');
+        // $article->link = Str::slug($request->input('title'));
+        // $article->body = $request->input('body');
+        // $article->cover_image = $image_url;
+        // $article->quote = $request->input('quote');
+        // $article->allow_comments = $request->input('allow_comments');
+        // $article->user_id = auth()->user()->id;
+        // $article->save();
         
-        $this->storeTags($request->input('tags'), $article->id);
+        $this->storeTags($request->input('tags'), Article::find(2)->id);
 
         return redirect()
                 ->back()

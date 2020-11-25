@@ -22,8 +22,8 @@
 							@endforeach
 					</div>
 				@endif
-				@if (isset($success))
-					<span class="alert alert-success">{{$success}}</span>
+				@if (session("success"))
+					<span class="alert alert-success">{{session("success")}}</span>
 				@endif
 				{{-- @if ($message = Session::get('success'))
 					<div class="alert alert-success alert-block">

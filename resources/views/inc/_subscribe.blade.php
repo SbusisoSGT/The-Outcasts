@@ -6,7 +6,7 @@
 			<form action="/mailing-list/store" method="POST">
 				@csrf
                 <input type="email" name="email" class="input-form" placeholder="Email">
-                <button type="button" class="submit-form"> Notify Me <i class="far fa-paper-plane"></i></button>
+                <button type="button" class="submit-form"> Subscribe <i class="far fa-paper-plane"></i></button>
             </form>
 		</div>
 		<span class="subscribe-success"></span>

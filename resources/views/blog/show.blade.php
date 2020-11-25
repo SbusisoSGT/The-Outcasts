@@ -26,7 +26,7 @@
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@thebalance" />
 	<meta name="twitter:title" content="{{$article->title}}" />
-	<meta name="twitter:description" content="$article->description}}" />
+	<meta name="twitter:description" content="{{$article->description}}" />
 	<meta name="twitter:image" content="{{asset('storage/covers/'.$article->cover_image)}}">
 @endsection
 

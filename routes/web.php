@@ -36,9 +36,9 @@ Route::get('/blog/articles', 'ArticlesController@index')->name('blog/articles');
 Route::get('/blog/articles/{article}/', 'ArticlesController@show')
          ->name('/blog/articles/{article}');
 
-Route::get('/blog/articles/create', 'ArticlesController@create')
-        ->name('blog/articles/create/')
-        ->middleware('can:create-article');
+// Route::get('/blog/articles/create', 'ArticlesController@create')
+//         ->name('blog/articles/create/')
+//         ->middleware('can:create-article');
 
 Route::post('/blog/articles/store', 'ArticlesController@store')
         ->name('blog/articles/store')

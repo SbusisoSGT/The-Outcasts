@@ -70,13 +70,17 @@
 		<div class="articles-container">
 			@for($x = 1; $x < count($articles); $x++)
 				<div class="article-container">
-					<div class="article-cover">
-						<img src={{asset('storage/covers/'.$articles[$x]->cover_image)}}>
-					</div>
-					<div class="article-attributes">
-						<div class="article-title">
-							{{$articles[$x]->title}}
+					<a class="article-link" href="{{$articles[$x]->link}}">
+						<div class="article-cover">
+							<img src={{asset('storage/covers/'.$articles[$x]->cover_image)}}>
 						</div>
+					</a>
+					<div class="article-attributes">
+						<a class="article-link" href="{{$articles[$x]->link}}">
+							<div class="article-title">
+								{{$articles[$x]->title}}
+							</div>
+						</a>
 						<div class="article-description">
 							{{$articles[$x]->description}}
 						</div>
