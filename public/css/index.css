@@ -36,3 +36,31 @@
     align-items: center;
     margin: 0 auto;
 }
+
+.blog-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    width: 15rem;
+    border-radius: 2rem;
+    height: 4rem;
+    border: 1px solid #9B29A5;
+    background: #FFF;
+    color: #9B29A5;
+    transition: ease .5s;
+}
+
+.blog-link:hover{
+    background: #9B29A5;
+    color: #FFF;
+}
+
+.fa-arrow-alt-circle-right{
+    font-size: 1.3rem;
+     margin-left: .4rem;
+}
+
+.footer{
+    display: none;
+}

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('page-name', $article->title." • ".config('app.name', 'The Outcasts'))
+@section('page-name', $article->title)
 
 @section('page-includes')
 	<link rel="stylesheet" href={{asset("css/blog/show.css") }}>

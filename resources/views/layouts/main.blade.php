@@ -26,7 +26,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('page-name')</title>
+    <title>@yield('page-name') • {{config('app.name', 'The Outcasts')}}</title>
     <!-- FB Page Share -->
     @yield('fb-share-config')
 
@@ -68,7 +68,9 @@
         @yield('content')
     </main>
     <footer class="footer">
-    	copyright (c) The Outcast<span class="logo-s-dark">s</span>
+    	<span class="footer-text">
+            Copyright &copy The Outcasts &bull; Designed with <i class='fas fa-heart'></i> by <span id="ht">7entHouse Tech</span>
+        </span>
     </footer>
 </body>
 </html>
