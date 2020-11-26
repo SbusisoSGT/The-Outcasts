@@ -45,7 +45,6 @@ body{
 	font-family: 'Give You Glory';
 	color: #000 !important;
 	font-size: 2.4rem;
-	font-weight: bold;
 	margin-left: 3rem;
 }
 
@@ -70,25 +69,29 @@ body{
     flex-direction: row;
 }
 .links li{
-    font-size: 1.7rem;
-    font-weight: 450;
+    font-size: 1.4rem;
+    font-weight: 550;
     border-bottom: 3px solid #FFF;
     list-style: none;
     margin-right: 2.5vw;
+    transition: ease-in .2s;
 }
+
 .links li:hover{
-    border-bottom: 3px solid #9B29A5;
-    transition: ease-in .5s;
+	color: #9B29A5 !important;
 }
+
 .links a{
     color: #000 !important;
 }
+
 #active-link{
-    border-bottom: 3px solid #9B29A5;
+    color: #9B29A5 !important;
+    transition: ease-in .2s;
 }
+
 #active-link:hover{
-    border-bottom: 3px solid #FFF;
-    transition: ease-in .5s;
+    color: #000 !important;
 }
 
 .hamburger-icon{

@@ -114,11 +114,15 @@
 	</div>
 @endsection
 
-@section('js-active')
-	<script>
-		let links = document.getElementByClassName('links');
-		let link = links[2][0]; 
-		link.document.addId = "active-link";
-	</script>
+@section('js-code')
+    <script>
+        document.querySelector(".links")[2][0].id = "active-link";
+    </script>
 @endsection
 
+@section('js-code')
+    <script>
+        let links = document.querySelector(".links");
+        links.children[2].firstElementChild.id = "active-link";
+    </script>
+@endsection

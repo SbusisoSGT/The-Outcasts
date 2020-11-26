@@ -54,10 +54,10 @@
         </span>
         <div class="right-nav">
             <ul class="links">
-                <a href={{route("/")}}><li id="active-link">Home</li></a>
-                <a href={{route("about")}}><li>About</li></a>
-                <a href={{route("blog/articles")}}><li>Blog</li></a>
-                <a href={{route("contact")}}><li>Contact</li></a>
+                <a href={{route("/")}}><li>HOME</li></a>
+                <a href={{route("about")}}><li>ABOUT</li></a>
+                <a href={{route("blog/articles")}}><li>BLOG</li></a>
+                <a href={{route("contact")}}><li>CONTACT</li></a>
             </ul>
         </div>
         <div class="hamburger-icon">
@@ -74,3 +74,4 @@
     </footer>
 </body>
 </html>
+@yield('js-code')

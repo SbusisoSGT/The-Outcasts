@@ -119,3 +119,10 @@
 		@include('inc._subscribe')
 	</div>
 @endsection
+
+@section('js-code')
+    <script>
+        let links = document.querySelector(".links");
+        links.children[2].firstElementChild.id = "active-link";
+    </script>
+@endsection

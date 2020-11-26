@@ -18,6 +18,7 @@
 @endsection
 
 @section('content')
+    <div class="cover-overlay"></div>
     <div class="cover-container">
         <div class="cover">
             <div class="cover-text">
@@ -25,11 +26,18 @@
                     <span class="text-2">Welcome to where</span>
                     <span id="belong">You Belong</span>
             </div>
-            <a href="/blog/articles">
-                <div class="blog-link">
-                Read articles <i class="far fa-arrow-alt-circle-right"></i>
-                </div>
-            </a>
         </div>
+        <a href="/blog/articles">
+            <div class="blog-link">
+            Read articles <i class="far fa-arrow-alt-circle-right"></i>
+            </div>
+        </a>
     </div>
+@endsection
+
+@section('js-code')
+    <script>
+        let links = document.querySelector(".links");
+        links.children[0].firstElementChild.id = "active-link";
+    </script>
 @endsection
