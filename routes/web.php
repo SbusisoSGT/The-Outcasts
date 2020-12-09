@@ -18,11 +18,11 @@ Route::get('/', function () {
 })->name('/');
 
 Route::get('/about', function(){
-    return "About";
+    return view('pages.about');
 })->name('about');
 
 Route::get('/contact', function(){
-    return "Contact";
+    return view('pages.contact');
 })->name('contact');
 
 Auth::routes();
@@ -44,7 +44,7 @@ Route::post('/blog/articles/store', 'ArticlesController@store')
         ->name('blog/articles/store')
         ->middleware('can:create-article');
 
-Route::get('/blog/articles/edit/{article}', 'ArticlesController@store')
+Route::get('/blog/articles/edit/{article}', 'ArticlesController@edit')
         ->name('blog/articles/store')
         ->middleware('can:update-article', 'article');
 

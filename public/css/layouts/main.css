@@ -61,42 +61,65 @@ body{
 }
 
 .right-nav{
+	display: flex;
+	flex-direction: row;
     margin-right: 0rem;
 }
 
 .links{
     display: flex;
-    flex-direction: row;
+	flex-direction: row;
+	margin: .3rem 2.5rem 0 0;
 }
-.links li{
+.links li, .dropdown-links li{
     font-size: 1.4rem;
     font-weight: 550;
-    border-bottom: 3px solid #FFF;
     list-style: none;
-    margin-right: 2.5vw;
+    margin-right: 2.3rem;
     transition: ease-in .2s;
 }
 
-.links li:hover{
-	color: #9B29A5 !important;
+.links li:hover, .dropdown-links li:hover{
+	color: #9B29A5;
 }
 
-.links a{
-    color: #000 !important;
+.links a, .dropdown-links a{
+    color: #000;
 }
 
 #active-link{
-    color: #9B29A5 !important;
+    color: #9B29A5;
     transition: ease-in .2s;
 }
 
 #active-link:hover{
-    color: #000 !important;
+    color: #000;
+}
+
+#nav-login-btn{
+	margin-top: .4rem;
+}
+
+.nav-login-btn{
+	margin-top: 1rem;
+	border-radius: 2rem;
+	border: 1px solid  #9B29A5;
+	color: #9B29A5;
+	width: 5rem;
+	font-size: 1.2rem;
+	padding: .4rem 1.5rem;
+	transition: ease .5s;
+}
+
+.nav-login-btn:hover{
+	border: 1px solid  #9B29A5;
+	color: #FFF;
+	background-color: #9B29A5;
 }
 
 .hamburger-icon{
 	border: 1px solid #000;
-	width: 3.1rem; height: 3.1rem;
+	width: 2.7rem; height: 2.7rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -104,9 +127,41 @@ body{
 }
 
 .hamburger-icon i{
-	font-size: 2.1rem;
+	font-size: 2rem;
 	color: #000;
 	cursor: pointer;
+}
+
+.dropdown-nav{
+	display: none;
+	flex-direction: column;
+	border: 1px solid #C8C8C8;
+	height: 100%;
+}
+
+.dropdown-links{
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+.dropdown-links li{
+	padding: .6rem 0 .6rem 1rem;
+	margin-right: 0;
+	font-size: 1.2rem;
+	border-bottom: 1px solid #C8C8C8;
+	border-left: .3rem solid #292929;
+}
+
+#active-link-dropdown{
+	color: #9B29A5;
+	border-left: .3rem solid #9B29A5;
+}
+#active-link-dropdown:hover{
+	color: #000;
+	border-left: .3rem solid#292929;
+}
+.dropdown-links li:hover{
+	border-left: .3rem solid #9B29A5;
 }
 
 .footer{
@@ -129,13 +184,32 @@ body{
 	color: #FF0BB6;
 }
 
+@media only screen and (max-width: 992px){
+	.logo a{
+		font-size: 2.1rem;
+		margin-left: 1rem;
+	}
+	
+	.links{
+		display: flex;
+		flex-direction: row;
+		margin: .3rem 2rem 0 0;
+	}
+	.links li{
+		margin-right: 1rem;
+	}
+}
+
 
 @media only screen and (max-width: 768px){
 	.hamburger-icon{
 		display: flex;
 	}
-
 	.links{
+		display: none;
+	}
+	
+	#nav-login-btn{
 		display: none;
 	}
 }
@@ -145,12 +219,7 @@ body{
 		padding: 1rem 2rem 1rem 3rem;
 	}
 	.logo a{
-		margin-left: 2rem;
+		font-size: 2rem;
+		margin-left: 1rem;
 	}
-	.links{
-		display: none;
-	}
-
-
-
 }

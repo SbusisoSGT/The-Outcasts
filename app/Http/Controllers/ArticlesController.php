@@ -16,12 +16,6 @@ class ArticlesController extends Controller
 {
     use ImageUploaderTrait;
     use StoreTagsTrait;
-    // protected $tagController;
-
-    // public function _constructor(TagController $tagController)
-    // {
-    //     $this->tagController = new $tagController;
-    // }
 
     /**
      * Display a listing of the resource.
@@ -43,8 +37,6 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-
-        // if(auth()->user()->guest() && auth()->user()->hasAnyRoles(["Admin", "Author"]))
         return view('blog.create');
     }
 
@@ -54,35 +46,34 @@ class ArticlesController extends Controller
      * @param  App\Http\Requests\StoreArticles  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticles $request)
     {
-        // $validated = $request->validated();
+        $request->validated();
 
-        // //Image upload & store
-        // $image_url = $this->storeImage($request, 'public/covers');
+        $image_url = $this->storeImage($request, 'public/covers');
 
-        // $article = new Article;
-        // $article->title = Str::title($request->input('title'));
-        // $article->description = $request->input('description');
-        // $article->link = Str::slug($request->input('title'));
-        // $article->body = $request->input('body');
-        // $article->cover_image = $image_url;
-        // $article->quote = $request->input('quote');
-        // $article->allow_comments = $request->input('allow_comments');
-        // $article->user_id = auth()->user()->id;
-        // $article->save();
+        $article = new Article;
+        $article->title = Str::title($request->input('title'));
+        $article->description = $request->input('description');
+        $article->link = Str::slug($request->input('title'));
+        $article->body = $request->input('body');
+        $article->cover_image = $image_url;
+        $article->quote = $request->input('quote');
+        $article->allow_comments = $request->input('allow_comments');
+        $article->user_id = auth()->user()->id;
+        $article->save();
         
         $this->storeTags($request->input('tags'), Article::find(2)->id);
 
         return redirect()
                 ->back()
-                ->with('success', 'Article created. Awaiting to be approved');
+                ->with('success', 'Article created successfully! Awaiting approval.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $article
      * @return \Illuminate\Http\Response
      */
     public function show($article)
@@ -98,15 +89,14 @@ class ArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($article)
     {
-        if(auth()->user()->guest())
-            abort(403);
-        else
-            return view('blog.edit')->with('article', $article); 
+        $article = Article::where('link', $article)->first();
+        
+        return view('blog.edit')->with('article', $article); 
     }
 
     /**

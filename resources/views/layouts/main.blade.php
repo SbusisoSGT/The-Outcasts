@@ -27,13 +27,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('page-name') • {{config('app.name', 'The Outcasts')}}</title>
-    <!-- FB Page Share -->
     @yield('fb-share-config')
 
-    <!-- TWT Page Share -->
     @yield('twt-share-config')
-
+    
     @yield('page-includes')
+    <link rel="canonical" href={{url()->full()}}>
     <link rel="stylesheet" href={{asset("css/layouts/main.css") }}>
     <link rel="stylesheet" href={{asset("css/index.css") }}>
     <link rel="stylesheet" href={{asset("css/app.css") }}>
@@ -41,7 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Poiret+One&family=Give+You+Glory&family=Caveat+Hallelujah&family=Satisfy&display=swap" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src={{asset("js/index.js") }}></script>
+    <script src={{asset("js/layouts/main.js") }}></script>
 </head>
 <div class="color-overlay">
 </div>
@@ -59,10 +58,22 @@
                 <a href={{route("blog/articles")}}><li>BLOG</li></a>
                 <a href={{route("contact")}}><li>CONTACT</li></a>
             </ul>
+            <a href="/login" id="nav-login-btn"><span class="nav-login-btn">
+                Login
+            </span></a>
         </div>
-        <div class="hamburger-icon">
+        <div class="hamburger-icon" onclick="menuSlider()">
         	<i class="material-icons" id="menu">menu</i>
         </div>
+    </nav>
+    <nav class="dropdown-nav">
+        <ul class="dropdown-links">
+            <a href={{route("/")}}><li>HOME</li></a>
+            <a href={{route("about")}}><li>ABOUT</li></a>
+            <a href={{route("blog/articles")}}><li>BLOG</li></a>
+            <a href={{route("contact")}}><li>CONTACT</li></a>
+            <a href="/login"><li>LOGIN</li></a>
+        </ul>
     </nav>
     <main class="main-container">
         @yield('content')

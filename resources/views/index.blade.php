@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-<!-- @section('page-name', config('app.name', 'The Outcasts')) -->
+@section('page-name', config('app.name', 'The Outcasts'))
 
 @section('page-includes')
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
@@ -17,19 +17,32 @@
     <meta property="fb:app_id" content="" />
 @endsection
 
+@section('twt-share-config')
+<!-- Twitter Card -->
+    <meta name="twitter:domain" content="theoutcasts.co.za">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{url()->full()}}">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+    <meta name="theme-color" content="#9B29A5">
+@endsection
+
 @section('content')
     <div class="cover-overlay"></div>
     <div class="cover-container">
         <div class="cover">
             <div class="cover-text">
-                <span class="text-1">Here's to the <span id="misfits">Misfits</span>!</span>
-                    <span class="text-2">Welcome to where</span>
-                    <span id="belong">You Belong</span>
+                {{-- <span class="text-1">Here's to the <span id="misfits">Misfits</span>!</span>
+                <span class="text-2">Welcome to where</span>
+                <span id="belong">You Belong</span> --}}
+                <span class="cover-text-heading">Lorem ipsum dolor <br/>sit amet consectetur</span>
+                <span class="cover-text-subtext">Adipisicing elit perferendis, animi asperiores perspiciatis eveniet quae ipsa quasi magnam voluptas ex similique. </span>
             </div>
         </div>
         <a href="/blog/articles">
             <div class="blog-link">
-            Read articles <i class="far fa-arrow-alt-circle-right"></i>
+                Read articles <i class="far fa-arrow-alt-circle-right"></i>
             </div>
         </a>
     </div>
@@ -39,5 +52,8 @@
     <script>
         let links = document.querySelector(".links");
         links.children[0].firstElementChild.id = "active-link";
+
+        let dropdown_links = document.querySelector('.dropdown-links');
+        dropdown_links.children[0].firstElementChild.id = "active-link-dropdown";
     </script>
 @endsection
