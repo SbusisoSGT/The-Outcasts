@@ -26,7 +26,6 @@ class ArticlesController extends Controller
     {
         $articles = Article::where('approved', 1)->get();
 
-        
         return view('blog.index')->with('articles', $articles); 
     }
 
@@ -78,7 +77,7 @@ class ArticlesController extends Controller
      */
     public function show($article)
     {
-        $article = Article::where('link', $article)->first();
+        $article = Article::where(['link' => $article, 'approved' => 1])->first();
 
         if(empty($article))
             return view('blog.index');

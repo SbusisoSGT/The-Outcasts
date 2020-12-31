@@ -24,15 +24,8 @@ class Tag extends Model
      *
      * @return App\Article $articles
      */
-    public function tag_articles()
+    public function articles()
     {
-        $articles = DB::table('articles')
-                        ->join('article_tags', 'articles.id', '=', 'article_tags.article_id')
-                        ->join('tags', 'tags.id', '=', 'article_tags.tag_id')
-                        ->where('tags.id', '=', $this->id)
-                        ->select('articles.*')
-                        ->get();
-
-        return $articles;
+        return $this->belongsToMany('App\Article', 'article_tags');
     }
 }

@@ -25,30 +25,21 @@ class Article extends Model
         return $this->belongsTo('App\User');
     }
 
-    /**
+    /** 
      * Get the tags of this article
+     * 
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'article_tags');
     }
 
     /**
      * Get the comments of this article
+     * 
      */
     public function comments()
     {
         return $this->hasMany('App\Comment');
-    }
-
-    public function article_tags()
-    {
-        $tags = DB::table('tags')
-                    ->join('article_tags', 'tags.id', '=', 'article_tags.tag_id')
-                    ->where('article_tags.article_id', $this->id)
-                    ->select('tags.*')
-                    ->get();
-
-        return $tags;
     }
 }

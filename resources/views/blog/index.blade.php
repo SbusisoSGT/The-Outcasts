@@ -7,26 +7,14 @@
 	<link rel="stylesheet" href={{asset("css/inc/_subscribe.css") }}>
 @endsection
 
-@section('fb-share-config')
-	<meta property="og:url" content="https://www.your-domain.com/your-page.html" />
-	<meta property="og:type" content="www.theoutcasts.co.za" />
-	<meta property="og:title" content="Your Website Title" />
-	<meta property="og:description" content="Your description" />
-	<meta property="og:image" content="https://www.your-domain.com/path/image.jpg" />
-@endsection
-
-@section('twitter-share-config')
-
-@endsection
-
 @section('content')
 	<div class="content-container">
 		<div class="latest-article-container">
-			<a class="article-link" href={{$articles->first()->link}}><div class="latest-article-title">
+			<a class="article-link" href="/blog/articles/{{$articles->first()->link}}"><div class="latest-article-title">
 				{{$articles->first()->title}} 
 			</div></a>
 			<div class="latest-article-cover">
-				<img src={{asset('storage/covers/'.$articles->first()->cover_image)}}>
+				<a href="/blog/articles/{{$articles->first()->link}}"><img src={{asset('storage/covers/'.$articles->first()->cover_image)}}></a>
 			</div>
 			<div class="latest-article-attributes">
 				<div class="article-aside-1">
@@ -54,8 +42,8 @@
 					</div>
 				</div>
 				<div class="article-tags">
-					@if(!empty($articles->first()->article_tags()))
-						@foreach ($articles->first()->article_tags() as $tag)
+					@if(!empty($articles->first()->tags()->get()))
+						@foreach ($articles->first()->tags()->get() as $tag)
 							<a href={{"/blog/tags/".$tag->tag}}>
 								<span class="article-tag">
 									{{$tag->tag}}
@@ -70,13 +58,13 @@
 		<div class="articles-container">
 			@for($x = 1; $x < count($articles); $x++)
 				<div class="article-container">
-					<a class="article-link" href="{{$articles[$x]->link}}">
+					<a class="article-link" href="/blog/articles/{{$articles[$x]->link}}">
 						<div class="article-cover">
 							<img src={{asset('storage/covers/'.$articles[$x]->cover_image)}}>
 						</div>
 					</a>
 					<div class="article-attributes">
-						<a class="article-link" href="{{$articles[$x]->link}}">
+						<a class="article-link" href="/blog/articles/{{$articles[$x]->link}}">
 							<div class="article-title">
 								{{$articles[$x]->title}}
 							</div>
@@ -102,8 +90,8 @@
 							</div>
 						</div>
 						<div class="article-tags">
-							@if(!empty($articles[$x]->article_tags()))
-								@foreach ($articles[$x]->article_tags() as $tag)
+							@if(!empty($articles[$x]->tags()->get()))
+								@foreach ($articles[$x]->tags()->get() as $tag)
 									<a href={{"/blog/tags/".$tag->link}}>
 										<span class="article-tag">
 											{{$tag->tag}}

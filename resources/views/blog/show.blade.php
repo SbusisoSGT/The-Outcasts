@@ -69,8 +69,8 @@
 					</div>
 				</div>
 				<div class="article-tags">
-					@if(!empty($article->article_tags()))
-						@foreach ($article->article_tags() as $tag)
+					@if(!empty($article->tags()->get()))
+						@foreach ($article->tags()->get() as $tag)
 							<a href={{"/blog/tags/".$tag->link}}>
 								<span class="article-tag">
 									{{$tag->tag}}
@@ -112,12 +112,6 @@
 	</div>
 	<div class="comment-container">
 	</div>
-@endsection
-
-@section('js-code')
-    <script>
-        document.querySelector(".links")[2][0].id = "active-link";
-    </script>
 @endsection
 
 @section('js-code')
