@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('page-name', config('app.name', 'The Outcasts'))
+@section('page-name', "Home of the Misfits!")
 
 @section('page-includes')
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
@@ -36,7 +36,7 @@
                 {{-- <span class="text-1">Here's to the <span id="misfits">Misfits</span>!</span>
                 <span class="text-2">Welcome to where</span>
                 <span id="belong">You Belong</span> --}}
-                <span class="cover-text-heading">Lorem ipsum dolor <br/>sit amet consectetur</span>
+                <span class="cover-text-heading">Here's to the <i><u>Misfits!</u></i><br/>Welcome to where you belong</span>
                 <span class="cover-text-subtext">Adipisicing elit perferendis, animi asperiores perspiciatis eveniet quae ipsa quasi magnam voluptas ex similique. </span>
             </div>
         </div>

@@ -26,7 +26,8 @@ class ArticlesController extends Controller
     {
         $articles = Article::where('approved', 1)->get();
 
-        return view('blog.index')->with('articles', $articles); 
+        return view('blog.index')
+                ->with('articles', $articles); 
     }
 
     /**
@@ -62,10 +63,9 @@ class ArticlesController extends Controller
         $article->user_id = auth()->user()->id;
         $article->save();
         
-        $this->storeTags($request->input('tags'), Article::find(2)->id);
+        $this->storeTags($request->input('tags'), $article->id);
 
-        return redirect()
-                ->back()
+        return redirect()->back()
                 ->with('success', 'Article created successfully! Awaiting approval.');
     }
 
@@ -77,10 +77,7 @@ class ArticlesController extends Controller
      */
     public function show($article)
     {
-        $article = Article::where(['link' => $article, 'approved' => 1])->first();
-
-        if(empty($article))
-            return view('blog.index');
+        $article = Article::where(['link' => $article, 'approved' => 1])->firstOrFail();
         
         return view('blog.show')->with('article', $article); 
     }
@@ -93,9 +90,10 @@ class ArticlesController extends Controller
      */
     public function edit($article)
     {
-        $article = Article::where('link', $article)->first();
+        $article = Article::where('link', $article)->firstOrFail();
         
-        return view('blog.edit')->with('article', $article); 
+        return view('blog.edit')
+                ->with('article', $article); 
     }
 
     /**

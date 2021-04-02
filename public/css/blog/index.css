@@ -5,10 +5,20 @@
 	padding: 3rem 3rem;
 }
 
+.articles-empty{
+	margin-top: 4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	color: #858383;
+}
+
 .latest-article-container{
 	width: 80%;
 	/*padding: 3rem 10rem;*/
-	border: 1px solid #C8C8C8;
+	/* border: 1px solid #C8C8C8; */
 }
 
 .latest-article-title{
@@ -161,6 +171,10 @@
 	color: #808080;
 }
 
+.subscribe-div{
+	display: flex;
+	justify-content: center;
+}
 @media only screen and (max-width: 992px){
 
 }

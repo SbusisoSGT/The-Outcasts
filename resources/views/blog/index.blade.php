@@ -1,14 +1,19 @@
 @extends('layouts.main')
 
-@section('page-name', "Blog | ".config('app.name', 'The Outcasts'))
+@section('page-name', "Blog • Articles ")
 
 @section('page-includes')
 	<link rel="stylesheet" href={{asset("css/blog/index.css") }}>
-	<link rel="stylesheet" href={{asset("css/inc/_subscribe.css") }}>
 @endsection
 
 @section('content')
 	<div class="content-container">
+	@if ($articles->isEmpty())
+		<div class="articles-empty">
+			Our writers are still putting together a piece
+			<span style="font-size: .9rem">Subscribe so we can notify you when nnnan article is posted</span>
+		</div>
+	@else	
 		<div class="latest-article-container">
 			<a class="article-link" href="/blog/articles/{{$articles->first()->link}}"><div class="latest-article-title">
 				{{$articles->first()->title}} 
@@ -103,7 +108,10 @@
 					</div>
 				</div>
 			@endfor
-		</div> 
+		</div>
+		@endif 
+	</div>
+	<div class="subscribe-div">
 		@include('inc._subscribe')
 	</div>
 @endsection
@@ -111,9 +119,9 @@
 @section('js-code')
     <script>
         let links = document.querySelector(".links");
-		links.children[2].firstElementChild.id = "active-link";
+		links.children[1].firstElementChild.id = "active-link";
 		
 		let dropdown_links = document.querySelector('.dropdown-links');
-        dropdown_links.children[2].firstElementChild.id = "active-link-dropdown";
+        dropdown_links.children[1].firstElementChild.id = "active-link-dropdown";
     </script>
 @endsection

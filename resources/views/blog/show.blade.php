@@ -35,7 +35,7 @@
 		<a href="https://www.facebook.com/sharer/sharer.php?u={{url()->full()}}" target="_blank">
 					<i data-href="{{url()->full()}}" id="facebook-share" class="fa fa-facebook article-share"></i>
 		</a>
-       	<a href="https://twitter.com/theoutcasts">
+       	<a href="https://twitter.com/intent/tweet?url={{url()->full()}}">
        		<i id="twitter-share" class="fab fa-twitter article-share"></i>
        	</a>
        <a href="mailto:?subject={{$article->title}}&body=Hey there%2C I was reading this article and I thought you would appreciate it%0A%0A{{url()->full()}}">
@@ -55,7 +55,7 @@
 					<img src={{asset("images/users/profile/".$article->user->profile_pic)}}>
 					<div class="article-details">
 						<span class="article-author">
-							<a href={{url("/authors/".$article->user->name)}}>
+							<a href="{{url('/authors/'.$article->user->name)}}">
 								{{ $article->user->name }}
 							</a>
 						</span><br/>
@@ -117,9 +117,9 @@
 @section('js-code')
     <script>
         let links = document.querySelector(".links");
-		links.children[2].firstElementChild.id = "active-link";
+		links.children[1].firstElementChild.id = "active-link";
 		
 		let dropdown_links = document.querySelector('.dropdown-links');
-        dropdown_links.children[2].firstElementChild.id = "active-link-dropdown";
+        dropdown_links.children[1].firstElementChild.id = "active-link-dropdown";
     </script>
 @endsection

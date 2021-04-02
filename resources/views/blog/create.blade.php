@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('page-name', config('app.name', 'The Outcasts')." | Blog")
+@section('page-name', "Post an Article • Blog")
 
 @section('page-includes')
 	<link rel="stylesheet" href={{asset("css/blog/create.css") }}>
@@ -79,6 +79,6 @@
 @section('js-code')
     <script>
         let links = document.querySelector(".links");
-        links.children[2].firstElementChild.id = "active-link";
+        links.children[1].firstElementChild.id = "active-link";
     </script>
 @endsection

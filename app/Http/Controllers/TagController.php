@@ -17,10 +17,11 @@ class TagController extends Controller
     public function show($tag)
     {
        $tag = Tag::where('link', $tag)->first();
-       $articles = $tag->tag_articles();
+
+       $articles = $tag->articles()->get();
 
        return view('blog.tags')
-              ->with(['articles' => $articles, 'tag' => $tag]);
+              ->with(['articles' => $articles,'tag' => $tag]);
     }
 
     public function storeTags($tags, $article_id)

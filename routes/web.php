@@ -31,32 +31,36 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //Blog Routes
-Route::get('/blog/articles', 'ArticlesController@index')->name('blog/articles');
+Route::get('/blog/articles', 'ArticlesController@index')
+        ->name('articles');
 
-Route::get('/blog/articles/{article}/', 'ArticlesController@show')
-         ->name('/blog/articles/{article}');
+// Route::get('/blog/articles/{article}', 'ArticlesController@show')
+//          ->name('articles.show');
 
-// Route::get('/blog/articles/create', 'ArticlesController@create')
-//         ->name('blog/articles/create/')
-//         ->middleware('can:create-article');
+Route::get('/blog/articles/create', 'ArticlesController@create')
+        ->name('articles.create')
+        ->middleware('can:create-article');
 
 Route::post('/blog/articles/store', 'ArticlesController@store')
-        ->name('blog/articles/store')
+        ->name('articles.store')
         ->middleware('can:create-article');
 
 Route::get('/blog/articles/edit/{article}', 'ArticlesController@edit')
-        ->name('blog/articles/store')
+        ->name('articles.edit')
         ->middleware('can:update-article', 'article');
 
 Route::put('/blog/articles/{article}', 'ArticlesController@update')
-        ->name('blog/articles/update')
+        ->name('articles.update')
         ->middleware('can:update-article', 'article');
 
 Route::delete('/blog/articles/{article}', 'ArticlesController@delete')
-        ->name('blog/articles/delete')
+        ->name('articles.delete')
         ->middleware('can:update-article');
 
 
 Route::get('/blog/tags/{tag}', 'TagController@show');
 
-// Route::post('/mailing-list/store', [MailingListController::class, 'store'])->name('/mailing-list/store');
+Route::post('/mailing-list', 'MailingListController@store')
+        ->name('mailing-list.store');
+
+//
